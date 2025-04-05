@@ -1,0 +1,23 @@
+project:
+  type: website
+  output-dir: docs ##This is where we are hosting all of our supporting documents
+
+website:
+  title: "Dominic Vincent Schenone"
+  navbar:
+    left:
+      - href: index.qmd ##This Hyphens, whatever is in Index.qmd ()
+        text: Home
+      - href: resume.qmd
+        text: Resume
+
+format:
+  html:
+    theme:
+      - cosmo
+      - brand
+    css: styles.css
+    toc: true
+
+
+

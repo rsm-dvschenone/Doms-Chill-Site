@@ -1,0 +1,8 @@
+---
+title: "Dom's Resume"
+
+---
+
+_Last updated: 9/1/2024_
+
+{{< pdf "other_documents/Dominic_Schenone_Resume_2024.pdf" width=100% height=800 >}}

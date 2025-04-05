@@ -1,0 +1,19 @@
+---
+title: "Dominic Schenone"
+image: "images/so_no_head.jpg"
+about:
+    template: jolla #Options are jolla, Solana, trestles, marquee, broadside
+    links:
+    -   icon: envelope
+        href: mailto:dominic.schenone@yahoo.com
+    -   icon: linkedin
+        href: https://www.linkedin.com/in/dominicschenone/
+    -   icon: instagram
+        href: https://www.instagram.com/dom.schenone/
+    -   icon: github
+        href: https://github.com/rsm-dvschenone
+---
+
+This is the beginning of my Quarto Website. I will continue to use this 
+
+To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
