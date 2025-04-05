@@ -10,5 +10,14 @@
   },
   "blog.qmd": {
     "blog.html": "6ee62468"
+  },
+  "project_assignments/HW2/index.qmd": {
+    "index.html": "4154fe04"
+  },
+  "Projects.qmd": {
+    "Projects.html": "32565a4d"
+  },
+  "project_assignments/HW1/index.qmd": {
+    "index.html": "00331f8c"
   }
 }
