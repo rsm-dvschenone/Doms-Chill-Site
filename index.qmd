@@ -1,5 +1,5 @@
 ---
-title: "Dominic Schenone"
+title: Dominic Schenone
 image: "images/so_no_head.jpg"
 about:
     template: jolla #Options are jolla, Solana, trestles, marquee, broadside
