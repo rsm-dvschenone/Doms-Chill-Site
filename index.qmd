@@ -1,5 +1,5 @@
 ---
-title: "Dominic Schenone"
+title: ""Dominic Schenone"
 image: "images/so_no_head.jpg"
 about:
     template: jolla #Options are jolla, Solana, trestles, marquee, broadside
@@ -11,7 +11,7 @@ about:
     -   icon: instagram
         href: https://www.instagram.com/dom.schenone/
     -   icon: github
-        href: https://github.com/rsm-dvschenone
+        href: https://github.com/rsm-dvschenone"
 ---
 
 This is the beginning of my Quarto Website. I will continue to use this 
