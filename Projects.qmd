@@ -1,5 +1,5 @@
 ---
-title: "Dom's Projects"
+title: Dom's Projects
 listing: #This can 
     contents: project_assignments #folder name
     type: grid
