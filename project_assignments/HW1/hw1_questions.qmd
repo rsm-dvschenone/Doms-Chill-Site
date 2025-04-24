@@ -79,7 +79,8 @@ _todo: Read the data into R/Python and describe the data_
 | `pop_propurban`      | Proportion of population urban within zip code                      |
 
 ::::
-
+```{python}
+ print(test) ``` 
 
 ### Balance Test 
 
