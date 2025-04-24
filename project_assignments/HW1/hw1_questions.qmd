@@ -80,7 +80,8 @@ _todo: Read the data into R/Python and describe the data_
 
 ::::
 ```{python}
- print(test) ``` 
+ print("test") 
+ ``` 
 
 ### Balance Test 
 
