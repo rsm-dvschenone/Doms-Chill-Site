@@ -4,6 +4,7 @@ project:
 
 website:
   title: "Dominic Vincent Schenone"
+  site-url: https://dominicschenone.com
   navbar:
     left:
       - href: index.qmd ##This Hyphens, whatever is in Index.qmd ()
@@ -12,6 +13,8 @@ website:
         text: Resume
       - href: Projects.qmd
         text: Projects
+
+
 
 format:
   html:

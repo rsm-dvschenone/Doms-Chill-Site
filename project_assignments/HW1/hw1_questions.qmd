@@ -31,9 +31,7 @@ print("DataTypes of columns: ", df.dtypes)
 ```
 ### Description
 
-```{python}
-df.describe(include=)
-```
+
 
 :::: {.callout-note collapse="true"}
 ### Variable Definitions
