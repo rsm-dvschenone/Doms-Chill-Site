@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Dominic Schenone">
-<meta name="dcterms.date" content="2025-04-27">
+<meta name="dcterms.date" content="2025-05-07">
 
 <title>A Replication of Karlan and List (2007) – Dominic Vincent Schenone</title>
 <style>
@@ -187,7 +187,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">April 27, 2025</p>
+      <p class="date">May 7, 2025</p>
     </div>
   </div>
   
@@ -206,7 +206,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="data" class="level2">
 <h2 class="anchored" data-anchor-id="data">Data</h2>
-<div id="746b7730" class="cell" data-execution_count="1">
+<div id="f1a31994" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">##Importing Pandas and also our data as df </span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd </span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_stata(<span class="st">'karlan_list_2007.dta'</span>)</span>
@@ -596,7 +596,7 @@ Variable Definitions
 <section id="balance-test" class="level3">
 <h3 class="anchored" data-anchor-id="balance-test">Balance Test</h3>
 <p>As an ad hoc test of the randomization mechanism, I provide a series of tests that compare aspects of the treatment and control groups to assess whether they are statistically significantly different from one another.</p>
-<div id="2fa1f003" class="cell" data-execution_count="2">
+<div id="640fa3c2" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#These are the variables that I am going to include</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#They are not outcome variables, so they will be good to use to test to see if the population distrbutions are significantly different:</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#mrm2 – months since last donation</span></span>
@@ -646,7 +646,7 @@ Balance Check Interpretation
 </div>
 </div>
 <p>Now I will go on to see if the results from making a linear regression, for variable mrm2, will match that from that as the t-test <span class="citation" data-cites="95">@95</span>% confidence</p>
-<div id="b11bb3bc" class="cell" data-execution_count="3">
+<div id="f7d44d53" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> t</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.formula.api <span class="im">as</span> smf</span>
@@ -681,8 +681,8 @@ Linear Regression result for mrm2:
 Dep. Variable:                   mrm2   R-squared:                       0.000
 Model:                            OLS   Adj. R-squared:                 -0.000
 Method:                 Least Squares   F-statistic:                   0.01428
-Date:                Sun, 27 Apr 2025   Prob (F-statistic):              0.905
-Time:                        20:42:23   Log-Likelihood:            -1.9585e+05
+Date:                Wed, 07 May 2025   Prob (F-statistic):              0.905
+Time:                        12:51:14   Log-Likelihood:            -1.9585e+05
 No. Observations:               50082   AIC:                         3.917e+05
 Df Residuals:                   50080   BIC:                         3.917e+05
 Df Model:                           1                                         
@@ -712,7 +712,7 @@ Notes:
 <section id="charitable-contribution-made" class="level3">
 <h3 class="anchored" data-anchor-id="charitable-contribution-made">Charitable Contribution Made</h3>
 <p>First, I analyze whether matched donations lead to an increased response rate of making a donation.</p>
-<div id="2f34b433" class="cell" data-execution_count="4">
+<div id="265a1526" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -736,7 +736,7 @@ Notes:
 </div>
 </div>
 </div>
-<div id="9af93dd8" class="cell" data-execution_count="5">
+<div id="32270c07" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> ttest_ind</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.formula.api <span class="im">as</span> smf</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -755,8 +755,8 @@ Notes:
 Dep. Variable:                   gave   R-squared:                       0.000
 Model:                            OLS   Adj. R-squared:                  0.000
 Method:                 Least Squares   F-statistic:                     9.618
-Date:                Sun, 27 Apr 2025   Prob (F-statistic):            0.00193
-Time:                        20:42:24   Log-Likelihood:                 26630.
+Date:                Wed, 07 May 2025   Prob (F-statistic):            0.00193
+Time:                        12:51:15   Log-Likelihood:                 26630.
 No. Observations:               50083   AIC:                        -5.326e+04
 Df Residuals:                   50081   BIC:                        -5.324e+04
 Df Model:                           1                                         
@@ -791,7 +791,7 @@ Probit Model Interpretation
 <p>I used a probit regression to model the likelihood that a person made a charitable donation as a function of whether they were offered a matching donation. The coefficient on the treatment variable was positive and statistically significant (z = 3.11, p = 0.002), suggesting that individuals who received the matching offer were more likely to donate.</p>
 </div>
 </div>
-<div id="fc09c72f" class="cell" data-execution_count="6">
+<div id="ca1d2053" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Prepare data for probit</span></span>
@@ -810,8 +810,8 @@ Probit Model Interpretation
 Dep. Variable:                   gave   No. Observations:                50083
 Model:                         Probit   Df Residuals:                    50081
 Method:                           MLE   Df Model:                            1
-Date:                Sun, 27 Apr 2025   Pseudo R-squ.:               0.0009783
-Time:                        20:42:25   Log-Likelihood:                -5030.5
+Date:                Wed, 07 May 2025   Pseudo R-squ.:               0.0009783
+Time:                        12:51:15   Log-Likelihood:                -5030.5
 converged:                       True   LL-Null:                       -5035.4
 Covariance Type:            nonrobust   LLR p-value:                  0.001696
 ==============================================================================
@@ -837,7 +837,7 @@ Why Use a Probit Model?
 </div>
 <p>Although the raw coefficient from a probit model isn’t directly interpretable as a probability, the significant result aligns with earlier t-tests and linear regression findings. This confirms that the treatment has a measurable effect on donation behavior. In essence, people respond to matching offers — even small nudges like this can meaningfully influence giving.</p>
 <p>I also took the liberty of calculating how much more likely someone is to donate because of the treatment, in percentage terms.</p>
-<div id="f3706eb5" class="cell" data-execution_count="7">
+<div id="a751661c" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get marginal effects</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>marginal_effects <span class="op">=</span> probit_model.get_margeff()</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(marginal_effects.summary())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -873,7 +873,7 @@ Match Ratio Interpretation (T-test + Regression)
 <p>I conducted a series of t-tests to examine whether higher match ratios (2:1 and 3:1) led to higher donation rates compared to a 1:1 match. None of the comparisons were statistically significant. This aligns with the findings of Karlan and List (2007), who similarly reported that while matched donations increased giving compared to no match, larger match ratios did not consistently lead to higher response rates. This suggests that the presence of a match, rather than its magnitude, may be the primary behavioral driver.</p>
 </div>
 </div>
-<div id="0a3335d6" class="cell" data-execution_count="8">
+<div id="f8c8f7e9" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> ttest_ind</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 1:1 vs 2:1</span></span>
@@ -909,7 +909,7 @@ Why Regression Might Reveal More
 <p>The regression model pools variance and uses all three match groups in one estimation, which can provide slightly more power than isolated pairwise t-tests. It also allows you to assess the pattern of effects together, rather than in fragments.</p>
 </div>
 </div>
-<div id="259d5b84" class="cell" data-execution_count="9">
+<div id="e244bc11" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create ratio indicators</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"ratio1"</span>] <span class="op">=</span> (df[<span class="st">"ratio"</span>] <span class="op">==</span> <span class="dv">1</span>).astype(<span class="bu">int</span>)</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"ratio2"</span>] <span class="op">=</span> (df[<span class="st">"ratio"</span>] <span class="op">==</span> <span class="dv">2</span>).astype(<span class="bu">int</span>)</span>
@@ -924,8 +924,8 @@ Why Regression Might Reveal More
 Dep. Variable:                   gave   R-squared:                       0.000
 Model:                            OLS   Adj. R-squared:                  0.000
 Method:                 Least Squares   F-statistic:                     4.117
-Date:                Sun, 27 Apr 2025   Prob (F-statistic):             0.0163
-Time:                        20:42:25   Log-Likelihood:                 26629.
+Date:                Wed, 07 May 2025   Prob (F-statistic):             0.0163
+Time:                        12:51:15   Log-Likelihood:                 26629.
 No. Observations:               50083   AIC:                        -5.325e+04
 Df Residuals:                   50080   BIC:                        -5.323e+04
 Df Model:                           2                                         
@@ -954,7 +954,7 @@ Notes:
 <h3 class="anchored" data-anchor-id="size-of-charitable-contribution">Size of Charitable Contribution</h3>
 <p>In this subsection, I analyze the effect of the size of matched donation on the size of the charitable contribution.</p>
 <p>Below is the T-Test:</p>
-<div id="c6a008df" class="cell" data-execution_count="10">
+<div id="adc731be" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> ttest_ind</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co"># T-test comparing average donation amount (including 0s)</span></span>
@@ -969,7 +969,7 @@ TtestResult(statistic=1.8605020225753781, pvalue=0.06282038947470686, df=50081.0
 </div>
 <p>The results of this indicate:</p>
 <p>Now I am running a bivariate linear regression of the donation amount on the treatment status. It shows:</p>
-<div id="16636851" class="cell" data-execution_count="11">
+<div id="3b3b1bd2" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.formula.api <span class="im">as</span> smf</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="co"># OLS regression of donation amount on treatment</span></span>
@@ -981,8 +981,8 @@ TtestResult(statistic=1.8605020225753781, pvalue=0.06282038947470686, df=50081.0
 Dep. Variable:                 amount   R-squared:                       0.000
 Model:                            OLS   Adj. R-squared:                  0.000
 Method:                 Least Squares   F-statistic:                     3.461
-Date:                Sun, 27 Apr 2025   Prob (F-statistic):             0.0628
-Time:                        20:42:25   Log-Likelihood:            -1.7946e+05
+Date:                Wed, 07 May 2025   Prob (F-statistic):             0.0628
+Time:                        12:51:15   Log-Likelihood:            -1.7946e+05
 No. Observations:               50083   AIC:                         3.589e+05
 Df Residuals:                   50081   BIC:                         3.589e+05
 Df Model:                           1                                         
@@ -1016,7 +1016,7 @@ Overall Donation Amount Interpretation
 <p>I analyzed whether people in the treatment group gave more money, on average, than those in the control group. Both a t-test and a linear regression yielded nearly identical results: treatment group participants donated about $0.15 more, but the difference was not statistically significant (p ≈ 0.063). This suggests that while there may be a small increase in donation amount due to the treatment, the effect is weak and uncertain when including non-donors in the analysis.</p>
 </div>
 </div>
-<div id="0095f511" class="cell" data-execution_count="12">
+<div id="60b1b32d" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.formula.api <span class="im">as</span> smf</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter to only people who donated</span></span>
@@ -1031,8 +1031,8 @@ Overall Donation Amount Interpretation
 Dep. Variable:                 amount   R-squared:                       0.000
 Model:                            OLS   Adj. R-squared:                 -0.001
 Method:                 Least Squares   F-statistic:                    0.3374
-Date:                Sun, 27 Apr 2025   Prob (F-statistic):              0.561
-Time:                        20:42:25   Log-Likelihood:                -5326.8
+Date:                Wed, 07 May 2025   Prob (F-statistic):              0.561
+Time:                        12:51:15   Log-Likelihood:                -5326.8
 No. Observations:                1034   AIC:                         1.066e+04
 Df Residuals:                    1032   BIC:                         1.067e+04
 Df Model:                           1                                         
@@ -1092,7 +1092,7 @@ Histogram Interpretation
 <p>I created histograms of donation amounts among donors in both the treatment and control groups. Both groups show similar distributions, with most donations clustering around $25 to $75. The red line shows the mean donation, which is slightly higher in the control group. These visuals reinforce the regression results — while the treatment may have influenced donation likelihood, it did not lead to higher amounts among those who gave.</p>
 </div>
 </div>
-<div id="918685e3" class="cell" data-execution_count="13">
+<div id="1100d45c" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1151,7 +1151,7 @@ Law of Large Numbers
 <p>To illustrate the Law of Large Numbers, I simulated differences in donation rates between treatment and control groups and plotted the cumulative average over 10,000 draws. While early sample differences fluctuated substantially, the average steadily approached the true treatment effect of 0.004. This demonstrates how, with large enough samples, the sample average converges to the population mean — providing reassurance about the reliability of randomized experimental estimates.</p>
 </div>
 </div>
-<div id="f6ee7195" class="cell" data-execution_count="14">
+<div id="34539b75" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1197,7 +1197,7 @@ Central Limit Theorem
 <p>I simulated 1000 samples for four different sizes (n = 50, 200, 500, 1000) and plotted the sampling distribution of the mean difference in donation rates. As expected, with increasing sample size, the distributions became more symmetric and concentrated around the true treatment effect. This visualizes the Central Limit Theorem — regardless of the population distribution, the sampling distribution of the mean becomes approximately normal as the sample size grows.</p>
 </div>
 </div>
-<div id="0bb3715a" class="cell" data-execution_count="15">
+<div id="abb433c0" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
