@@ -23,13 +23,14 @@ However, Blueprinty has collected data on 1,500 mature (non-startup) engineering
 ```{python, echo=false, include=false}
 import warnings
 import pandas as pd
-warnings.simplefilter(action='ignore', category=UserWarning)
-warnings.simplefilter(action='ignore', category=pd.errors.SettingWithCopyWarning)
-warnings.simplefilter(action='ignore', category=RuntimeWarning)
-warnings.simplefilter(action='ignore', category=FutureWarning)
-warnings.simplefilter(action='ignore', category=DeprecationWarning)
 from scipy.optimize import OptimizeWarning
-warnings.simplefilter(action='ignore', category=OptimizeWarning)
+
+warnings.simplefilter("ignore", category=UserWarning)
+warnings.simplefilter("ignore", category=pd.errors.SettingWithCopyWarning)
+warnings.simplefilter("ignore", category=RuntimeWarning)
+warnings.simplefilter("ignore", category=FutureWarning)
+warnings.simplefilter("ignore", category=DeprecationWarning)
+warnings.simplefilter("ignore", category=OptimizeWarning)
 ```
 
 ```{python}

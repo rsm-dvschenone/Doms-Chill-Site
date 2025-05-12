@@ -203,7 +203,7 @@ window.Quarto = {
 </section>
 <section id="data" class="level3">
 <h3 class="anchored" data-anchor-id="data">Data</h3>
-<div id="84157a59" class="cell" data-execution_count="3">
+<div id="99305cc2" class="cell" data-execution_count="3">
 <div class="cell-output cell-output-stdout">
 <pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
 RangeIndex: 1500 entries, 0 to 1499
@@ -220,7 +220,7 @@ dtypes: float64(3), int64(2), object(1)
 memory usage: 70.4+ KB</code></pre>
 </div>
 </div>
-<div id="efd0d9aa" class="cell" data-execution_count="4">
+<div id="6ece6928" class="cell" data-execution_count="4">
 <div class="cell-output cell-output-stdout">
 <pre><code>Mean number of patents by customer status:
  iscustomer
@@ -250,7 +250,7 @@ Histogram Interpretation
 </div>
 </div>
 <p>Blueprinty customers are not selected at random. It may be important to account for systematic differences in the age and regional location of customers vs non-customers.</p>
-<div id="8666ea41" class="cell" data-execution_count="5">
+<div id="ffece3e5" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-stdout">
 <pre><code>Age summary by customer status:
               count       mean       std   min   25%   50%    75%   max
@@ -281,7 +281,7 @@ While both groups peak around the mid- to late-20s, customers show a <strong>bro
 suggesting that older individuals may be more likely to become customers.</p>
 </div>
 </div>
-<div id="6d53dcb0" class="cell" data-execution_count="6">
+<div id="b4d94269" class="cell" data-execution_count="6">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -317,7 +317,7 @@ This geographic pattern implies that regional targeting or market presence might
 <p>Taking the natural logarithm to get the log-likelihood:</p>
 <p>[ () = _{i=1}^{n} ( -+ Y_i - Y_i! ) ]</p>
 <p>This is the log-likelihood expression we will use to estimate ( ) in our simple Poisson model.</p>
-<div id="a41ffff6" class="cell" data-execution_count="8">
+<div id="1342c5da" class="cell" data-execution_count="8">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -348,7 +348,7 @@ This visual check helps confirm the function is well-behaved and the model is ap
 <p>[ -n + <em>{i=1}^{n} Y_i = 0 </em>{i=1}^{n} Y_i = n = _{i=1}^{n} Y_i = {Y} ]</p>
 <p>Thus, the MLE of ( ) is simply the <strong>sample mean</strong> ( {Y} ).<br>
 This makes intuitive sense, since the Poisson distribution has both its mean and variance equal to ( ).</p>
-<div id="4415fb21" class="cell" data-execution_count="9">
+<div id="0bf47882" class="cell" data-execution_count="9">
 <div class="cell-output cell-output-stdout">
 <pre><code>MLE of lambda (numerical optimization): 3.6847
 Sample mean of Y: 3.6847</code></pre>
@@ -410,7 +410,7 @@ Estimate 𝛽
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<div id="65515ef5" class="cell" data-execution_count="12">
+<div id="b1419447" class="cell" data-execution_count="12">
 <div class="cell-output cell-output-stdout">
 <pre><code>         Current function value: 3258.072145
          Iterations: 18
@@ -428,8 +428,8 @@ Extracting Coefficients
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<div id="5b6302ae" class="cell" data-execution_count="13">
-<div class="cell-output cell-output-display" data-execution_count="32">
+<div id="5dc1bfd5" class="cell" data-execution_count="13">
+<div class="cell-output cell-output-display" data-execution_count="51">
 <div>
 
 
@@ -515,7 +515,7 @@ Analysis of Coefficients
 </ul>
 </div>
 </div>
-<div id="52d2963f" class="cell" data-execution_count="14">
+<div id="b0392914" class="cell" data-execution_count="14">
 <div class="cell-output cell-output-stdout">
 <pre><code>                 Generalized Linear Model Regression Results                  
 ==============================================================================
@@ -525,7 +525,7 @@ Model Family:                 Poisson   Df Model:                            7
 Link Function:                    Log   Scale:                          1.0000
 Method:                          IRLS   Log-Likelihood:                -3258.1
 Date:                Mon, 12 May 2025   Deviance:                       2143.3
-Time:                        10:03:41   Pearson chi2:                 2.07e+03
+Time:                        10:04:13   Pearson chi2:                 2.07e+03
 No. Iterations:                     5   Pseudo R-squ. (CS):             0.1360
 Covariance Type:            nonrobust                                         
 ==============================================================================
@@ -556,7 +556,7 @@ Model Validation with statsmodels
 <p>The resulting coefficients and standard errors were nearly identical to our hand-coded implementation, validating both the numerical optimization and our understanding of Poisson regression mechanics.</p>
 </div>
 </div>
-<div id="860765d2" class="cell" data-execution_count="15">
+<div id="907537d6" class="cell" data-execution_count="15">
 <div class="cell-output cell-output-stdout">
 <pre><code>Average increase in predicted patents from being a customer: 0.7928</code></pre>
 </div>
@@ -610,8 +610,8 @@ Variable Definitions
 </div>
 </div>
 </div>
-<div id="90cfbe89" class="cell" data-execution_count="16">
-<div class="cell-output cell-output-display" data-execution_count="35">
+<div id="8992a0f2" class="cell" data-execution_count="16">
+<div class="cell-output cell-output-display" data-execution_count="54">
 <div>
 
 
@@ -727,8 +727,8 @@ Variable Definitions
 </div>
 </div>
 </div>
-<div id="20f5fc00" class="cell" data-execution_count="17">
-<div class="cell-output cell-output-display" data-execution_count="36">
+<div id="73745065" class="cell" data-execution_count="17">
+<div class="cell-output cell-output-display" data-execution_count="55">
 <pre><code>Unnamed: 0                       0
 id                               0
 days                             0
@@ -769,7 +769,7 @@ Implementing the Poission Regression
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<div id="e0e76c61" class="cell" data-execution_count="19">
+<div id="35c4c1fc" class="cell" data-execution_count="19">
 <div class="cell-output cell-output-stdout">
 <pre><code>                 Generalized Linear Model Regression Results                  
 ==============================================================================
@@ -779,7 +779,7 @@ Model Family:                 Poisson   Df Model:                           10
 Link Function:                    Log   Scale:                          1.0000
 Method:                          IRLS   Log-Likelihood:            -5.2418e+05
 Date:                Mon, 12 May 2025   Deviance:                   9.2689e+05
-Time:                        10:03:42   Pearson chi2:                 1.37e+06
+Time:                        10:04:14   Pearson chi2:                 1.37e+06
 No. Iterations:                    10   Pseudo R-squ. (CS):             0.6840
 Covariance Type:            nonrobust                                         
 ==============================================================================
