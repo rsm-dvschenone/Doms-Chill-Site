@@ -1,7 +1,7 @@
 ---
 title: "Poisson Regression Examples"
 author: "Dominic Schenone"
-date: today
+date: "May 11, 2025"
 callout-appearance: minimal # this hides the blue "i" icon on .callout-notes
 ---
 
