@@ -16,6 +16,17 @@ However, Blueprinty has collected data on 1,500 mature (non-startup) engineering
 
 
 ### Data
+```{python, echo=false, include=false}
+import warnings
+import pandas as pd
+warnings.simplefilter(action='ignore', category=UserWarning)
+warnings.simplefilter(action='ignore', category=pd.errors.SettingWithCopyWarning)
+warnings.simplefilter(action='ignore', category=RuntimeWarning)
+warnings.simplefilter(action='ignore', category=FutureWarning)
+warnings.simplefilter(action='ignore', category=DeprecationWarning)
+from scipy.optimize import OptimizeWarning
+warnings.simplefilter(action='ignore', category=OptimizeWarning)
+```
 
 ```{python}
 # Load necessary packages
@@ -437,6 +448,8 @@ model_vars = [
 ]
 
 airbnb_clean = airbnb.dropna(subset=model_vars)
+airbnb_clean = airbnb_clean.copy()
+
 # Binary encoding for instant_bookable
 airbnb_clean["instant_bookable_bin"] = (airbnb_clean["instant_bookable"] == "t").astype(int)
 
@@ -487,9 +500,6 @@ We modeled the number of reviews (as a proxy for bookings) using Poisson regress
 Overall, the model helps identify which listing attributes are associated with higher demand in NYC’s Airbnb market.
 
 :::
-
-_todo: Assume the number of reviews is a good proxy for the number of bookings. Perform some exploratory data analysis to get a feel for the data, handle or drop observations with missing values on relevant variables, build one or more models (e.g., a poisson regression model for the number of bookings as proxied by the number of reviews), and interpret model coefficients to describe variation in the number of reviews as a function of the variables provided._
-
 
 
 
