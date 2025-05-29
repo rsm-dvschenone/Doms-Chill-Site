@@ -119,7 +119,14 @@ conjoint_data = conjoint_data[["resp", "task", "brand", "ad", "price", "choice"]
 
 The "hard part" of the MNL likelihood function is organizing the data, as we need to keep track of 3 dimensions (consumer $i$, covariate $k$, and product $j$) instead of the typical 2 dimensions for cross-sectional regression models (consumer $i$ and covariate $k$). The fact that each task for each respondent has the same number of alternatives (3) helps.  In addition, we need to convert the categorical variables for brand and ads into binary variables.
 
-_todo: reshape and prep the data_
+
+To prepare the data:
+- We created **dummy variables** for the `brand` attribute. Specifically, we included binary indicators for **Netflix** and **Prime Video**, using **Hulu** as the baseline.
+- The `ad` feature was converted into a **binary variable**, where 1 indicates the presence of ads and 0 indicates an ad-free option.
+- We retained the `price` and `choice` columns in their original form.
+
+Below is the Python code used for data preprocessing. The previewed table shows that each row corresponds to one product alternative shown in a choice task.
+
 
 ```{python, echo=FALSE}
 import pandas as pd
