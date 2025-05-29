@@ -4,7 +4,6 @@ author: "Dominic Schenone"
 date: "May 28 2025"
 callout-appearance: minimal # this hides the blue "i" icon on .callout-notes
 execute:
-  echo: false
   warning: false
   message: false
 ---
@@ -183,7 +182,7 @@ def log_likelihood(beta, X, y, groups):
 
 ```
 
-_todo: Use `optim()` in R or `scipy.optimize()` in Python to find the MLEs for the 4 parameters ($\beta_\text{netflix}$, $\beta_\text{prime}$, $\beta_\text{ads}$, $\beta_\text{price}$), as well as their standard errors (from the Hessian). For each parameter construct a 95% confidence interval._
+
 
 ```{python}
 from scipy.optimize import minimize
@@ -221,7 +220,7 @@ summary_df = pd.DataFrame({
     "95% CI Upper": conf_int[:, 1]
 }, index=["netflix", "prime", "ad", "price"])
 
-summary_df
+
 ```
 We estimated the parameters of the multinomial logit model using the BFGS algorithm via `scipy.optimize.minimize()`, minimizing the negative log-likelihood function defined earlier. The model includes binary indicators for `netflix`, `prime`, and `ad`, with `hulu` and `no ads` as the respective baseline categories, along with the continuous variable `price`.
 
@@ -246,6 +245,53 @@ Interpreting the Estimates
 ## 5. Estimation via Bayesian Methods
 
 _todo: code up a metropolis-hasting MCMC sampler of the posterior distribution. Take 11,000 steps and throw away the first 1,000, retaining the subsequent 10,000._
+```{python}
+import numpy as np
+
+# Log-prior function
+def log_prior(beta):
+    # Priors: N(0,5) for all except price (N(0,1))
+    prior = -0.5 * ((beta[0]/np.sqrt(5))**2 +
+                    (beta[1]/np.sqrt(5))**2 +
+                    (beta[2]/np.sqrt(5))**2 +
+                    (beta[3]/1)**2)
+    return prior
+
+# Log-posterior function
+def log_posterior(beta, X, y, groups):
+    return -log_likelihood(beta, X, y, groups) + log_prior(beta)
+
+# MCMC settings
+n_steps = 11000
+burn_in = 1000
+n_params = X.shape[1]
+
+# Proposal distribution: diagonal covariances
+proposal_sds = [0.05, 0.05, 0.05, 0.005]
+
+# Storage
+samples = np.zeros((n_steps, n_params))
+beta_current = np.zeros(n_params)
+log_post_current = log_posterior(beta_current, X, y, choice_sets)
+
+# Metropolis-Hastings loop
+for step in range(n_steps):
+    # Propose new beta from independent normal perturbations
+    beta_proposal = beta_current + np.random.normal(0, proposal_sds)
+
+    # Compute log-posterior
+    log_post_proposal = log_posterior(beta_proposal, X, y, choice_sets)
+
+    # Acceptance probability
+    accept_prob = min(1, np.exp(log_post_proposal - log_post_current))
+
+    # Accept or reject
+    if np.random.rand() < accept_prob:
+        beta_current = beta_proposal
+        log_post_current = log_post_proposal
+
+    samples[step] = beta_current
+```
 
 _hint: Use N(0,5) priors for the betas on the binary variables, and a N(0,1) prior for the price beta._
 
