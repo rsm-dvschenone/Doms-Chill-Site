@@ -22,40 +22,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -257,68 +223,13 @@ u_{ij} = (1 \times Netflix_j) + (0.5 \times Prime_j) + (-0.8*Ads_j) - 0.1\times 
 \]</span></p>
 <p>where the variables are binary indicators and <span class="math inline">\(\varepsilon\)</span> is Type 1 Extreme Value (ie, Gumble) distributed.</p>
 <p>The following code provides the simulation of the conjoint data.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
 <div class="callout-icon-container">
-<i class="callout-icon"></i>
+<i class="callout-icon no-icon"></i>
 </div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<div id="335dc648" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Set seed for reproducibility</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">123</span>)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Define attributes</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>brands <span class="op">=</span> [<span class="st">"N"</span>, <span class="st">"P"</span>, <span class="st">"H"</span>]  <span class="co"># Netflix, Prime, Hulu</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>ads <span class="op">=</span> [<span class="st">"Yes"</span>, <span class="st">"No"</span>]</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>prices <span class="op">=</span> np.arange(<span class="dv">8</span>, <span class="dv">33</span>, <span class="dv">4</span>)</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate all possible profiles</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>profiles <span class="op">=</span> pd.DataFrame([(b, a, p) <span class="cf">for</span> b <span class="kw">in</span> brands <span class="cf">for</span> a <span class="kw">in</span> ads <span class="cf">for</span> p <span class="kw">in</span> prices],</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>                        columns<span class="op">=</span>[<span class="st">"brand"</span>, <span class="st">"ad"</span>, <span class="st">"price"</span>])</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Utility functions</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>b_util <span class="op">=</span> {<span class="st">"N"</span>: <span class="fl">1.0</span>, <span class="st">"P"</span>: <span class="fl">0.5</span>, <span class="st">"H"</span>: <span class="fl">0.0</span>}</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>a_util <span class="op">=</span> {<span class="st">"Yes"</span>: <span class="op">-</span><span class="fl">0.8</span>, <span class="st">"No"</span>: <span class="fl">0.0</span>}</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>p_util <span class="op">=</span> <span class="kw">lambda</span> p: <span class="op">-</span><span class="fl">0.1</span> <span class="op">*</span> p</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulation parameters</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>n_peeps <span class="op">=</span> <span class="dv">100</span></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>n_tasks <span class="op">=</span> <span class="dv">10</span></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>n_alts <span class="op">=</span> <span class="dv">3</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulate one respondent</span></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sim_one(<span class="bu">id</span>):</span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    datlist <span class="op">=</span> []</span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> t <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, n_tasks <span class="op">+</span> <span class="dv">1</span>):</span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>        sampled <span class="op">=</span> profiles.sample(n<span class="op">=</span>n_alts, replace<span class="op">=</span><span class="va">False</span>).copy()</span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>        sampled.insert(<span class="dv">0</span>, <span class="st">"task"</span>, t)</span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>        sampled.insert(<span class="dv">0</span>, <span class="st">"resp"</span>, <span class="bu">id</span>)</span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>        sampled[<span class="st">"v"</span>] <span class="op">=</span> (</span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>            sampled[<span class="st">"brand"</span>].<span class="bu">map</span>(b_util) <span class="op">+</span></span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>            sampled[<span class="st">"ad"</span>].<span class="bu">map</span>(a_util) <span class="op">+</span></span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>            p_util(sampled[<span class="st">"price"</span>])</span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>        ).<span class="bu">round</span>(<span class="dv">10</span>)</span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>        sampled[<span class="st">"e"</span>] <span class="op">=</span> <span class="op">-</span>np.log(<span class="op">-</span>np.log(np.random.rand(n_alts)))</span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>        sampled[<span class="st">"u"</span>] <span class="op">=</span> sampled[<span class="st">"v"</span>] <span class="op">+</span> sampled[<span class="st">"e"</span>]</span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>        sampled[<span class="st">"choice"</span>] <span class="op">=</span> (sampled[<span class="st">"u"</span>] <span class="op">==</span> sampled[<span class="st">"u"</span>].<span class="bu">max</span>()).astype(<span class="bu">int</span>)</span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>        datlist.append(sampled)</span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> pd.concat(datlist, ignore_index<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate data</span></span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>conjoint_data <span class="op">=</span> pd.concat([sim_one(i) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, n_peeps <span class="op">+</span> <span class="dv">1</span>)], ignore_index<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="co"># Keep only observable variables</span></span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>conjoint_data <span class="op">=</span> conjoint_data[[<span class="st">"resp"</span>, <span class="st">"task"</span>, <span class="st">"brand"</span>, <span class="st">"ad"</span>, <span class="st">"price"</span>, <span class="st">"choice"</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<div class="callout-body-container">
+
 </div>
 </div>
 </div>
@@ -326,16 +237,22 @@ Note
 <section id="preparing-the-data-for-estimation" class="level2">
 <h2 class="anchored" data-anchor-id="preparing-the-data-for-estimation">3. Preparing the Data for Estimation</h2>
 <p>The “hard part” of the MNL likelihood function is organizing the data, as we need to keep track of 3 dimensions (consumer <span class="math inline">\(i\)</span>, covariate <span class="math inline">\(k\)</span>, and product <span class="math inline">\(j\)</span>) instead of the typical 2 dimensions for cross-sectional regression models (consumer <span class="math inline">\(i\)</span> and covariate <span class="math inline">\(k\)</span>). The fact that each task for each respondent has the same number of alternatives (3) helps. In addition, we need to convert the categorical variables for brand and ads into binary variables.</p>
-<p><em>todo: reshape and prep the data</em></p>
-<div id="c891a854" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'conjoint_data.csv'</span>)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.get_dummies(df, columns<span class="op">=</span>[<span class="st">"brand"</span>], drop_first<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"ad"</span>] <span class="op">=</span> df[<span class="st">"ad"</span>].<span class="bu">map</span>({<span class="st">"Yes"</span>: <span class="dv">1</span>, <span class="st">"No"</span>: <span class="dv">0</span>})</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>df.rename(columns<span class="op">=</span>{<span class="st">"brand_N"</span>: <span class="st">"netflix"</span>, <span class="st">"brand_P"</span>: <span class="st">"prime"</span>}, inplace<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="2">
+<p>To prepare the data: - We created <strong>dummy variables</strong> for the <code>brand</code> attribute. Specifically, we included binary indicators for <strong>Netflix</strong> and <strong>Prime Video</strong>, using <strong>Hulu</strong> as the baseline. - The <code>ad</code> feature was converted into a <strong>binary variable</strong>, where 1 indicates the presence of ads and 0 indicates an ad-free option. - We retained the <code>price</code> and <code>choice</code> columns in their original form.</p>
+<p>Below is the Python code used for data preprocessing. The previewed table shows that each row corresponds to one product alternative shown in a choice task.</p>
+</section>
+<section id="estimation-via-maximum-likelihood" class="level2">
+<h2 class="anchored" data-anchor-id="estimation-via-maximum-likelihood">4. Estimation via Maximum Likelihood</h2>
+<p>We begin by defining the log-likelihood function for the Multinomial Logit (MNL) model. For each choice set (i.e., a group of three product alternatives shown to a respondent), we compute the probability of the selected alternative using the softmax function applied to the utility values. These utilities are linear combinations of the feature values and coefficients (betas).</p>
+<p>The function below returns the <strong>negative log-likelihood</strong>, which we will minimize using <code>scipy.optimize</code>.</p>
+<p><em>todo: Use <code>optim()</code> in R or <code>scipy.optimize()</code> in Python to find the MLEs for the 4 parameters (<span class="math inline">\(\beta_\text{netflix}\)</span>, <span class="math inline">\(\beta_\text{prime}\)</span>, <span class="math inline">\(\beta_\text{ads}\)</span>, <span class="math inline">\(\beta_\text{price}\)</span>), as well as their standard errors (from the Hessian). For each parameter construct a 95% confidence interval.</em></p>
+<div id="9b22feec" class="cell" data-execution_count="4">
+<div class="cell-output cell-output-stdout">
+<pre><code>         Current function value: 879.855368
+         Iterations: 14
+         Function evaluations: 368
+         Gradient evaluations: 71</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="4">
 <div>
 
 
@@ -343,65 +260,40 @@ Note
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">resp</th>
-<th data-quarto-table-cell-role="th">task</th>
-<th data-quarto-table-cell-role="th">choice</th>
-<th data-quarto-table-cell-role="th">ad</th>
-<th data-quarto-table-cell-role="th">price</th>
-<th data-quarto-table-cell-role="th">netflix</th>
-<th data-quarto-table-cell-role="th">prime</th>
+<th data-quarto-table-cell-role="th">Estimate</th>
+<th data-quarto-table-cell-role="th">Std. Error</th>
+<th data-quarto-table-cell-role="th">95% CI Lower</th>
+<th data-quarto-table-cell-role="th">95% CI Upper</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">0</td>
-<td>1</td>
-<td>1</td>
-<td>1</td>
-<td>1</td>
-<td>28</td>
-<td>True</td>
-<td>False</td>
+<td data-quarto-table-cell-role="th">netflix</td>
+<td>0.941195</td>
+<td>0.076854</td>
+<td>0.790561</td>
+<td>1.091829</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">1</td>
-<td>1</td>
-<td>1</td>
-<td>0</td>
-<td>1</td>
-<td>16</td>
-<td>False</td>
-<td>False</td>
+<td data-quarto-table-cell-role="th">prime</td>
+<td>0.501616</td>
+<td>0.048685</td>
+<td>0.406193</td>
+<td>0.597038</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">2</td>
-<td>1</td>
-<td>1</td>
-<td>0</td>
-<td>1</td>
-<td>16</td>
-<td>False</td>
-<td>True</td>
+<td data-quarto-table-cell-role="th">ad</td>
+<td>-0.731994</td>
+<td>0.027100</td>
+<td>-0.785109</td>
+<td>-0.678879</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">3</td>
-<td>1</td>
-<td>2</td>
-<td>0</td>
-<td>1</td>
-<td>32</td>
-<td>True</td>
-<td>False</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">4</td>
-<td>1</td>
-<td>2</td>
-<td>1</td>
-<td>1</td>
-<td>16</td>
-<td>False</td>
-<td>True</td>
+<td data-quarto-table-cell-role="th">price</td>
+<td>-0.099480</td>
+<td>0.006281</td>
+<td>-0.111791</td>
+<td>-0.087170</td>
 </tr>
 </tbody>
 </table>
@@ -409,11 +301,73 @@ Note
 </div>
 </div>
 </div>
-</section>
-<section id="estimation-via-maximum-likelihood" class="level2">
-<h2 class="anchored" data-anchor-id="estimation-via-maximum-likelihood">4. Estimation via Maximum Likelihood</h2>
-<p><em>todo: Code up the log-likelihood function.</em></p>
-<p><em>todo: Use <code>optim()</code> in R or <code>scipy.optimize()</code> in Python to find the MLEs for the 4 parameters (<span class="math inline">\(\beta_\text{netflix}\)</span>, <span class="math inline">\(\beta_\text{prime}\)</span>, <span class="math inline">\(\beta_\text{ads}\)</span>, <span class="math inline">\(\beta_\text{price}\)</span>), as well as their standard errors (from the Hessian). For each parameter construct a 95% confidence interval.</em></p>
+<p>We estimated the parameters of the multinomial logit model using the BFGS algorithm via <code>scipy.optimize.minimize()</code>, minimizing the negative log-likelihood function defined earlier. The model includes binary indicators for <code>netflix</code>, <code>prime</code>, and <code>ad</code>, with <code>hulu</code> and <code>no ads</code> as the respective baseline categories, along with the continuous variable <code>price</code>.</p>
+<p>The table below summarizes the parameter estimates, standard errors (from the inverse Hessian), and 95% confidence intervals:</p>
+<div id="c77746d1" class="cell" data-execution_count="5">
+<div class="cell-output cell-output-display" data-execution_count="5">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Estimate</th>
+<th data-quarto-table-cell-role="th">Std. Error</th>
+<th data-quarto-table-cell-role="th">95% CI Lower</th>
+<th data-quarto-table-cell-role="th">95% CI Upper</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">netflix</td>
+<td>0.941</td>
+<td>0.077</td>
+<td>0.791</td>
+<td>1.092</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">prime</td>
+<td>0.502</td>
+<td>0.049</td>
+<td>0.406</td>
+<td>0.597</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">ad</td>
+<td>-0.732</td>
+<td>0.027</td>
+<td>-0.785</td>
+<td>-0.679</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">price</td>
+<td>-0.099</td>
+<td>0.006</td>
+<td>-0.112</td>
+<td>-0.087</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Interpreting the Estimates</p>
+<ul>
+<li><p>Brand Preference: Netflix and Prime are both preferred over the baseline (Hulu), with Netflix receiving the highest utility.</p></li>
+<li><p>Ad Dislike: The negative coefficient for ad confirms that respondents significantly prefer ad-free experiences.</p></li>
+<li><p>Price Sensitivity: The negative and significant coefficient for price aligns with economic intuition — as price increases, utility decreases.</p></li>
+</ul>
+</div>
+</div>
+</div>
 </section>
 <section id="estimation-via-bayesian-methods" class="level2">
 <h2 class="anchored" data-anchor-id="estimation-via-bayesian-methods">5. Estimation via Bayesian Methods</h2>
