@@ -61,70 +61,55 @@ where the variables are binary indicators and $\varepsilon$ is Type 1 Extreme Va
 The following code provides the simulation of the conjoint data.
 
 :::: {.callout-note collapse="true"}
-```{r}
-# set seed for reproducibility
-set.seed(123)
+```{python}
+import pandas as pd
+import numpy as np
 
-# define attributes
-brand <- c("N", "P", "H") # Netflix, Prime, Hulu
-ad <- c("Yes", "No")
-price <- seq(8, 32, by=4)
+# Set seed for reproducibility
+np.random.seed(123)
 
-# generate all possible profiles
-profiles <- expand.grid(
-    brand = brand,
-    ad = ad,
-    price = price
-)
-m <- nrow(profiles)
+# Define attributes
+brands = ["N", "P", "H"]  # Netflix, Prime, Hulu
+ads = ["Yes", "No"]
+prices = np.arange(8, 33, 4)
 
-# assign part-worth utilities (true parameters)
-b_util <- c(N = 1.0, P = 0.5, H = 0)
-a_util <- c(Yes = -0.8, No = 0.0)
-p_util <- function(p) -0.1 * p
+# Generate all possible profiles
+profiles = pd.DataFrame([(b, a, p) for b in brands for a in ads for p in prices],
+                        columns=["brand", "ad", "price"])
 
-# number of respondents, choice tasks, and alternatives per task
-n_peeps <- 100
-n_tasks <- 10
-n_alts <- 3
+# Utility functions
+b_util = {"N": 1.0, "P": 0.5, "H": 0.0}
+a_util = {"Yes": -0.8, "No": 0.0}
+p_util = lambda p: -0.1 * p
 
-# function to simulate one respondent’s data
-sim_one <- function(id) {
-  
-    datlist <- list()
-    
-    # loop over choice tasks
-    for (t in 1:n_tasks) {
-        
-        # randomly sample 3 alts (better practice would be to use a design)
-        dat <- cbind(resp=id, task=t, profiles[sample(m, size=n_alts), ])
-        
-        # compute deterministic portion of utility
-        dat$v <- b_util[dat$brand] + a_util[dat$ad] + p_util(dat$price) |> round(10)
-        
-        # add Gumbel noise (Type I extreme value)
-        dat$e <- -log(-log(runif(n_alts)))
-        dat$u <- dat$v + dat$e
-        
-        # identify chosen alternative
-        dat$choice <- as.integer(dat$u == max(dat$u))
-        
-        # store task
-        datlist[[t]] <- dat
-    }
-    
-    # combine all tasks for one respondent
-    do.call(rbind, datlist)
-}
+# Simulation parameters
+n_peeps = 100
+n_tasks = 10
+n_alts = 3
 
-# simulate data for all respondents
-conjoint_data <- do.call(rbind, lapply(1:n_peeps, sim_one))
+# Simulate one respondent
+def sim_one(id):
+    datlist = []
+    for t in range(1, n_tasks + 1):
+        sampled = profiles.sample(n=n_alts, replace=False).copy()
+        sampled.insert(0, "task", t)
+        sampled.insert(0, "resp", id)
+        sampled["v"] = (
+            sampled["brand"].map(b_util) +
+            sampled["ad"].map(a_util) +
+            p_util(sampled["price"])
+        ).round(10)
+        sampled["e"] = -np.log(-np.log(np.random.rand(n_alts)))
+        sampled["u"] = sampled["v"] + sampled["e"]
+        sampled["choice"] = (sampled["u"] == sampled["u"].max()).astype(int)
+        datlist.append(sampled)
+    return pd.concat(datlist, ignore_index=True)
 
-# remove values unobservable to the researcher
-conjoint_data <- conjoint_data[ , c("resp", "task", "brand", "ad", "price", "choice")]
+# Generate data
+conjoint_data = pd.concat([sim_one(i) for i in range(1, n_peeps + 1)], ignore_index=True)
 
-# clean up
-rm(list=setdiff(ls(), "conjoint_data"))
+# Keep only observable variables
+conjoint_data = conjoint_data[["resp", "task", "brand", "ad", "price", "choice"]]
 ```
 ::::
 
